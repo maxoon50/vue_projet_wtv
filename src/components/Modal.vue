@@ -1,5 +1,5 @@
 <template>
-    <div id="modal" class="flex al-vert al-horiz hide" @click="hideModal">
+    <div id="modal" class="flex al-vert al-horiz" @click="hideModal">
     
         <div class="cont-detail-film shadow flex" v-if="movieState.choosenFilm">
     
@@ -44,12 +44,14 @@
             }) {
                 if (code == "Escape") {
                     this.movieState.choosenFilm = null;
-                    window.removeEventListener('keydown', this.listener)
                 }
             }
         },
         created(){
-                  window.addEventListener('keydown', this.listener)
+            window.addEventListener('keydown', this.listener)
+        },
+        beforeDestroy(){
+            window.removeEventListener('keydown', this.listener)
         }
     
     

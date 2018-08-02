@@ -1,7 +1,8 @@
 <template>
   <div class="flex wrap flexCenter mb-xxl mt-xxl" id="main-cont">
     <app-film v-for="(film,i) in movieState.films" :key="i" v-bind="{film}"></app-film>
-    <app-modal class="hide" :class="{show: movieState.choosenFilm}"></app-modal>
+  <!--  <app-modal class="hide" :class="{show: movieState.choosenFilm}"></app-modal>-->
+      <app-modal v-if="movieState.choosenFilm"></app-modal>
   </div>
 </template>
 
