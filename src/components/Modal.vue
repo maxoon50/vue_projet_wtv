@@ -1,12 +1,12 @@
 <template>
-    <div id="modal" class="flex al-vert al-horiz hide" @click="closeModal">
+    <div id="modal" class="flex al-vert al-horiz hide" @click="hideModal">
     
-        <div class="cont-detail-film shadow flex" v-if="filmSelected">
+        <div class="cont-detail-film shadow flex" v-if="movieState.choosenFilm">
     
             <div> <img :src="getImgUrl()" alt=""></div>
             <div class="resume">
-                <h2>{{filmSelected.titre}}</h2>
-                <p>{{filmSelected.resume}}</p>
+                <h2>{{movieState.choosenFilm.titre}}</h2>
+                <p>{{movieState.choosenFilm.resume}}</p>
             </div>
     
         </div>
@@ -14,24 +14,44 @@
 </template>
 
 <script>
+    import {
+        movieState
+    } from '../states/movieState';
+    
     export default {
         name: 'AppModal',
         components: {
     
         },
-        props: ['filmSelected', 'closeModal'],
     
         data: function() {
             return {
-                film: null,
+                // ici on doit récupérer l'objet global movieState sinon on init une valeur data à null et du coup on n'a plus les getters /setters
+                //ex film = movieState.choosenFilm
+                movieState
             }
         },
         methods: {
     
             getImgUrl() {
-                return `/imgs/${this.filmSelected.img}`
+                return `/imgs/${this.movieState.choosenFilm.img}`
+            },
+            hideModal() {
+                movieState.choosenFilm = null;
+            },
+            listener({
+                code
+            }) {
+                if (code == "Escape") {
+                    this.movieState.choosenFilm = null;
+                    window.removeEventListener('keydown', this.listener)
+                }
             }
+        },
+        created(){
+                  window.addEventListener('keydown', this.listener)
         }
+    
     
     }
 </script>
@@ -62,7 +82,8 @@
     .hide {
         display: none !important;
     }
-    .resume{
+    
+    .resume {
         margin: 20px;
     }
 </style>

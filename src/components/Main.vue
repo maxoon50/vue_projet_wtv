@@ -1,7 +1,7 @@
 <template>
   <div class="flex wrap flexCenter mb-xxl mt-xxl" id="main-cont">
-    <app-film v-for="(film,i) in films" :key="i" v-bind="{film, callModal}"></app-film>
-    <app-modal :filmSelected="choosenFilm" class="hide" :class="{show: choosenFilm}" v-bind="{closeModal}"></app-modal>
+    <app-film v-for="(film,i) in movieState.films" :key="i" v-bind="{film}"></app-film>
+    <app-modal class="hide" :class="{show: movieState.choosenFilm}"></app-modal>
   </div>
 </template>
 
@@ -9,6 +9,9 @@
 <script>
   import Film from './Film.vue';
   import AppModal from './Modal.vue';
+  import {
+    movieState
+  } from '../states/movieState';
   
   export default {
     name: 'AppMain',
@@ -19,40 +22,27 @@
     },
     data: function() {
       return {
-        films: null,
-        choosenFilm: null,
+        movieState
       }
     },
     methods: {
       async filmsServed() {
         try {
-  
           const result = await fetch('/data/movies.json');
           const films = await result.json();
-          this.films = films['films'];
-          this.films = this.films.concat(this.films).concat(this.films).concat(this.films)
+          this.movieState.films = films['films'];
+          this.movieState.films = this.movieState.films.concat(this.movieState.films).concat(this.movieState.films).concat(this.movieState.films)
   
         } catch (e) {
           console.log(e);
         }
       },
-      callModal(data) {
-        this.choosenFilm = data;
-      },
-      closeModal() {
-        this.choosenFilm = null;
-        console.log('close bb')
-      }
+
+  
     },
     async created() {
       this.filmsServed();
-      window.addEventListener('keydown', ({
-        code
-      }) => {
-        if (code == "Escape") {
-          this.choosenFilm = null;
-        }
-      })
+
     },
   
   

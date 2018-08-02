@@ -1,6 +1,6 @@
 <template>
     <div class="cont-img">
-        <div class="overflow" @click="callModal(film)">
+        <div class="overflow"  @click="selectMovie">
             <img :src="getImgUrl()" />
         </div>
         <p>{{ film.titre }}</p>
@@ -8,36 +8,48 @@
 </template>
 
 <script>
-export default {
-  name: 'Film',
-  props: ['film', 'callModal'],
-  methods: {
-    detailFilm () {
-      alert(this.detail)
-    },
-    getImgUrl () {
-      return `/imgs/${this.film.img}`
+    import {
+        movieState
+    } from '../states/movieState';
+    
+    export default {
+        name: 'Film',
+        data: function(){
+            return{
+
+            }
+        },
+        props: ['film'],
+        methods: {
+            detailFilm() {
+                alert(this.detail)
+            },
+            getImgUrl() {
+                return `/imgs/${this.film.img}`
+            },
+            selectMovie(){
+                
+                movieState.choosenFilm = this.film;
+                console.log(movieState.choosenFilm)
+            }
+    
+        }
+    
     }
-
-  }
-
-}
 </script>
 
 <style lang="less">
-
-  @import '../assets/style/variables.less';
-
+    @import '../assets/style/variables.less';
     .cont-img {
         margin: 2%;
         max-width: 187px;
     }
-
+    
     .cont-img p {
         color: white;
         text-align: center;
     }
-
+    
     .overflow:hover {
         -moz-box-shadow: 0 0 10px @color1;
         -webkit-box-shadow: 0 0 10px @color1;
@@ -45,7 +57,7 @@ export default {
         transition: all 0.3s;
         cursor: pointer;
     }
-
+    
     .overflow {
         box-sizing: border-box;
         -moz-box-sizing: border-box;
@@ -54,5 +66,14 @@ export default {
         box-shadow: 0 30px 60px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
         border-radius: 5px;
         overflow: hidden;
+    }
+    img{
+           transform: translateZ(0);
+           transition: all 0.2s ease-in-out;
+    }
+    .overflow:hover{
+        img{
+            transform: scale3d(1.2,1.2,1.2);
+        }
     }
 </style>
