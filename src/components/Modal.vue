@@ -42,6 +42,7 @@
             listener({
                 code
             }) {
+            
                 if (code == "Escape") {
                     this.movieState.choosenFilm = null;
                 }
@@ -53,8 +54,8 @@
         beforeDestroy(){
             window.removeEventListener('keydown', this.listener)
         }
-    
-    
+
+        
     }
 </script>
 
