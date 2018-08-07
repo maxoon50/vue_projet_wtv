@@ -8,10 +8,11 @@
 </template>
 
 <script>
-    import {
-        movieState
-    } from '../states/movieState';
-    
+    import { movieState } from '../states/movieState';
+    import axios from 'axios';
+
+    const FILMS_API = 'http://localhost:8005/films/';
+
     export default {
         name: 'Film',
         data: function(){
@@ -21,16 +22,15 @@
         },
         props: ['film'],
         methods: {
-            detailFilm() {
-                alert(this.detail)
-            },
             getImgUrl() {
                 return `/imgs/${this.film.img}`
             },
-            selectMovie(){
-                
+            async selectMovie(){
+                if(!this.film.resume){
+                    const result = await axios.get(FILMS_API + this.film.id);
+                    this.film.resume = result.data;
+                }
                 movieState.choosenFilm = this.film;
-                console.log(movieState.choosenFilm)
             }
     
         }

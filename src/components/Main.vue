@@ -34,7 +34,7 @@
   
         try {
           const result = await axios.get(FILMS_API);
-          this.movieState.films = result.data['films'];
+          this.movieState.films = result.data;
           this.movieState.films = this.movieState.films.concat(this.movieState.films).concat(this.movieState.films).concat(this.movieState.films)
   
         } catch (e) {
