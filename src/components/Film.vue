@@ -27,10 +27,13 @@
             },
             async selectMovie(){
                 if(!this.film.resume){
+                    movieState.loader = true;
                     const result = await axios.get(FILMS_API + this.film.id);
                     this.film.resume = result.data;
                 }
+                movieState.loader = false;
                 movieState.choosenFilm = this.film;
+
             }
     
         }

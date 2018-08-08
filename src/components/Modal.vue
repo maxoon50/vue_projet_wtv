@@ -1,6 +1,6 @@
 <template>
     <div id="modal" class="flex al-vert al-horiz" @click="hideModal">
-    
+
         <div class="cont-detail-film shadow flex" v-if="movieState.choosenFilm">
     
             <div> <img :src="getImgUrl()" alt=""></div>
@@ -89,4 +89,5 @@
     .resume {
         margin: 20px;
     }
+
 </style>

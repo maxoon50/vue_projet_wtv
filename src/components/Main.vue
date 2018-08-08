@@ -1,5 +1,6 @@
 <template>
   <div class="flex wrap flexCenter mb-xxl mt-xxl" id="main-cont">
+      <Loader/>
     <app-film v-for="(film,i) in movieState.films" :key="i" v-bind="{film}"></app-film>
     <!--  <app-modal class="hide" :class="{show: movieState.choosenFilm}"></app-modal>-->
     <app-modal v-if="movieState.choosenFilm"></app-modal>
@@ -10,6 +11,7 @@
 <script>
   import Film from './Film.vue';
   import AppModal from './Modal.vue';
+  import Loader from './Loader';
   import axios from 'axios';
   import {
     movieState
@@ -21,7 +23,8 @@
     name: 'AppMain',
     components: {
       'app-film': Film,
-      AppModal
+      AppModal,
+        Loader
   
     },
     data: function() {
