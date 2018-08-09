@@ -16,7 +16,7 @@ export default {
   components: {
     'app-header': AppHeader,
     'app-main': AppMain,
-    AppFooter
+    AppFooter,
   }
 }
 </script>
@@ -111,5 +111,7 @@ export default {
     display: flex;
     flex-direction: column;
     height: 100%;
+      overflow-y: scroll;
+      overflow-x: hidden;
   }
 </style>

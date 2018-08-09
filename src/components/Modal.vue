@@ -37,7 +37,7 @@
                 return `/imgs/${this.movieState.choosenFilm.img}`
             },
             hideModal() {
-                movieState.choosenFilm = null;
+                movieState.closeSlider= true;
             },
             listener({
                 code
@@ -74,17 +74,15 @@
     }
     
     #modal {
-        position: fixed;
-        top: 0;
+/*        position: fixed;
+        top: 0;*/
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, .5);
-        z-index: 3;
+/*        background-color: rgba(0, 0, 0, .5);
+        z-index: 3;*/
     }
     
-    .hide {
-        display: none !important;
-    }
+
     
     .resume {
         margin: 20px;
