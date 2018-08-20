@@ -13,6 +13,9 @@
 
     const FILMS_API = 'http://localhost:8005/films/';
 
+    const FILMS_IMG= 'http://localhost:8005/imgs/';
+
+
     export default {
         name: 'Film',
         data: function(){
@@ -23,7 +26,7 @@
         props: ['film'],
         methods: {
             getImgUrl() {
-                return `/imgs/${this.film.img}`
+                return `${FILMS_IMG}${this.film.img}`
             },
             async selectMovie(){
                 if(!this.film.resume){

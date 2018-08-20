@@ -1,5 +1,7 @@
 <template>
   <header>
+       <router-link to="/foo">
+  
     <div class="grid">
 
       <div class="grid__title">
@@ -13,12 +15,13 @@
       </div>
 
     </div>
-
+</router-link>
   </header>
 </template>
 
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
+
 
 export default {
   name: 'AppHeader',
