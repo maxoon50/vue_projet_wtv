@@ -10,11 +10,7 @@
 <script>
     import { movieState } from '../states/movieState';
     import axios from 'axios';
-
-    const FILMS_API = 'http://localhost:8005/films/';
-
-    const FILMS_IMG= 'http://localhost:8005/imgs/';
-
+    import { FILMS_API_ADRESS } from '../globals/globals.js';
 
     export default {
         name: 'Film',
@@ -26,12 +22,12 @@
         props: ['film'],
         methods: {
             getImgUrl() {
-                return `${FILMS_IMG}${this.film.img}`
+                return `${FILMS_API_ADRESS}/imgs/${this.film.img}`
             },
             async selectMovie(){
                 if(!this.film.resume){
                     movieState.loader = true;
-                    const result = await axios.get(FILMS_API + this.film.id);
+                    const result = await axios.get(FILMS_API_ADRESS + '/films/' + this.film.id);
                     this.film.resume = result.data;
                 }
                 movieState.loader = false;

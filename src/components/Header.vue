@@ -1,6 +1,6 @@
 <template>
   <header>
-       <router-link to="/foo">
+       <router-link to="/new-film">
   
     <div class="grid">
 

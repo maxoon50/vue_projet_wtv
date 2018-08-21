@@ -9,7 +9,7 @@ Vue.use(VueRouter)
 
 const routes = [
   { path: '/', component: Main },
-  { path: '/foo', component: Form },
+  { path: '/new-film', component: Form },
 ]
 
 const router = new VueRouter({

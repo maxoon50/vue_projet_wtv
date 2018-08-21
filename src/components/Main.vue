@@ -23,9 +23,7 @@
     import {
         movieState
     } from '../states/movieState';
-
-
-    const FILMS_API = 'http://localhost:8005/films';
+    import { FILMS_API_ADRESS } from '../globals/globals.js';
 
     export default {
         name: 'AppMain',
@@ -44,7 +42,7 @@
             async filmsServed() {
 
                 try {
-                    const result = await axios.get(FILMS_API);
+                    const result = await axios.get(FILMS_API_ADRESS + '/films');
                     this.movieState.films = result.data;
                     this.movieState.films = this.movieState.films.concat(this.movieState.films).concat(this.movieState.films).concat(this.movieState.films)
 
