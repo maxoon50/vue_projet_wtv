@@ -86,16 +86,20 @@
                         console.log('c est gagné')
                     }
                 }).catch(function (error) {
-                        if (error.response && error.response.status === 400) {
+                    if (error.response && error.response.status === 400) {
+                        if (error.response.status === 400) {
                             let datas = error.response.data.errors;
                             form.getErrors(datas);
+                        } else if (error.response.status === 500) {
+                            console.log('erreur 500');
                         }
+                    }
                 });
             },
             getErrors(errors) {
                 errors.forEach(elt => {
-                        let property = `${elt}Error`;
-                        this[property] = true;
+                    let property = `${elt}Error`;
+                    this[property] = true;
                 })
             }
         },
