@@ -8,9 +8,6 @@
         <div class="half">
             <Slider/>
         </div>
-
-        <!--  <app-modal class="hide" :class="{show: movieState.choosenFilm}"></app-modal>-->
-        <!--    <app-modal v-if="movieState.choosenFilm"></app-modal>-->
     </div>
 </template>
 
@@ -24,6 +21,7 @@
         movieState
     } from '../states/movieState';
     import { FILMS_API_ADRESS } from '../globals/globals.js';
+    import { EventBus } from "../main";
 
     export default {
         name: 'AppMain',
@@ -35,7 +33,6 @@
         data: function () {
             return {
                 movieState,
-                a: movieState
             }
         },
         methods: {
@@ -44,8 +41,8 @@
                 try {
                     const result = await axios.get(FILMS_API_ADRESS + '/films');
                     this.movieState.films = result.data;
-                    this.movieState.films = this.movieState.films.concat(this.movieState.films).concat(this.movieState.films).concat(this.movieState.films)
-
+                   /*/!**!/ this.movieState.films = this.movieState.films.concat(this.movieState.films).concat(this.movieState.films).concat(this.movieState.films)
+*/
                 } catch (e) {
                     console.log(e);
                 }
@@ -60,7 +57,6 @@
             this.filmsServed();
 
         },
-
 
     }
 </script>

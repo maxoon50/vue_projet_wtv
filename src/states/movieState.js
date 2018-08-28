@@ -14,11 +14,11 @@ import Vue from 'vue'
               closeSlider: function(){
 
                      setTimeout(()=>{
-                         console.log('on remove ')
                          movieState.choosenFilm = null;
                          movieState.closeSlider = false;
                      },900)
 
-              }
+              },
+
           }
       })

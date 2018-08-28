@@ -3,7 +3,7 @@ import App from './App.vue'
 import VueRouter from 'vue-router'
 import Form from './components/Form'
 import Main from './components/Main'
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 Vue.use(VueRouter)
 
